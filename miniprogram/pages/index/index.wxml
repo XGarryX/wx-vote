@@ -1,0 +1,15 @@
+<VoteButton
+    title="单选投票"
+    bindanimationStart="handleanimationStart"
+    bindanimationEnd="handleAnimationEnd"
+    animationList="{{animationList}}"
+    disabled="{{disabled}}"
+    url="/pages/singleChoice/index"
+/>
+<VoteButton
+    title="多选投票"
+    bindanimationStart="handleanimationStart"
+    bindanimationEnd="handleAnimationEnd"
+    animationList="{{animationList}}"
+    disabled="{{disabled}}"
+/>

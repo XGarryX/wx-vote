@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/index",
+    "pages/singleChoice/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5ed2de",
+    "navigationBarTitleText": "小投票",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#5ed2de",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "投票",
+      "iconPath": "assets/icons/vote.png",
+      "selectedIconPath": "assets/icons/vote-active.png"
+    }, {
+      "pagePath": "pages/user/index",
+      "text": "我的",
+      "iconPath": "assets/icons/user.png",
+      "selectedIconPath": "assets/icons/user-active.png"
+    }]
+  }
+}

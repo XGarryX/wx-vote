@@ -1,0 +1,10 @@
+@import 'style/iconfont.wxss';
+
+page {
+  --themeColor: #5ed2de;
+  background: #f3f3f3;
+}
+
+page, view, button {
+  box-sizing: border-box;
+}

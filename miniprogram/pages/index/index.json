@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "VoteButton": "../../Components/VoteButton/VoteButton"
+  }
+}

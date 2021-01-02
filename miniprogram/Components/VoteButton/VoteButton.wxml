@@ -1,0 +1,19 @@
+<view class="vote-container">
+    <view
+      class="vote"
+      bindtap="handleTap"
+    >
+        <image mode="widthFix" src="../../assets/images/single-choice.png" />
+        <view class="vote-button">{{title}}</view>
+        <view class="vote-hand-container">
+            <image 
+                wx:for="{{count}}"
+                wx:key="index"
+                mode="widthFix"
+                src="../../assets/images/hand.png"
+                animation="{{animationData[index]}}"
+                bindtransitionend="handleTransitionEnd"
+            />
+        </view>
+    </view>
+</view>

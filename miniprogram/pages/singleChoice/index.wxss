@@ -1,0 +1,73 @@
+/* pages/singleChoice/index.wxss */
+.vote-detail {
+  padding: 60rpx 40rpx;
+  background-color: #FFF;
+}
+.vote-detail .item {
+  padding: 25rpx 0;
+  border-bottom: 1px solid #F2F2F2;
+}
+.vote-detail .vote-title {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+.vote-detail .vote-description {
+  font-size: 30rpx;
+}
+.vote-detail .option-container {
+  font-size: 26rpx;
+}
+.vote-detail .option-container .option-list .option-item {
+  display: flex;
+  align-items: center;
+}
+.vote-detail .option-container .option-list .option-item .icon-box {
+  width: 62rpx;
+  text-align: left;
+}
+.vote-detail .option-container .option-list .option-item .icon-box .iconfont {
+  color: #e72626;
+  font-size: 38rpx;
+}
+.vote-detail .option-container .option-list .option-item input {
+  width: 100%;
+}
+.vote-detail .option-container .add-option {
+  color: var(--themeColor);
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.vote-detail .option-container .add-option .iconfont {
+  margin-right: 20rpx;
+  font-size: 38rpx;
+}
+.vote-setup {
+  padding: 0 40rpx;
+  margin-top: 30rpx;
+  background-color: #FFF;
+}
+.vote-setup .item {
+  display: flex;
+  height: 90rpx;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2;
+}
+.vote-setup .item:last-child {
+  border-bottom: none;
+}
+.vote-setup .setup-date .date-text {
+  color: #b4b4b4;
+}
+.complate-button {
+  width: 90%;
+  line-height: 70rpx;
+  margin: 30rpx auto 0 auto;
+  background-color: var(--themeColor);
+  border-radius: 10rpx;
+  color: #FFF;
+  text-align: center;
+}
