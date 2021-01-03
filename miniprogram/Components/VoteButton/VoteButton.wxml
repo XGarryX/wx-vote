@@ -1,12 +1,25 @@
 <view class="vote-container">
     <view
       class="vote"
-      bindtap="handleTap"
     >
         <image mode="widthFix" src="../../assets/images/single-choice.png" />
-        <view class="vote-button">{{title}}</view>
+        <button
+            wx:if="{{openType == 'getUserInfo'}}"
+            class="vote-button getUserInfo"
+            open-type="getUserInfo"
+            bindgetuserinfo="handleGetuserInfo"
+        >
+            {{title}}
+        </button>
+        <button
+            wx:else
+            class="vote-button"
+            bindtap="animationStart"
+        >
+            {{title}}
+        </button>
         <view class="vote-hand-container">
-            <image 
+            <image
                 wx:for="{{count}}"
                 wx:key="index"
                 mode="widthFix"

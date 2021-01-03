@@ -41,6 +41,7 @@
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "plugin": {
       "list": []
@@ -60,8 +61,15 @@
           "query": ""
         },
         {
-          "name": "单选",
-          "pathName": "pages/singleChoice/index",
+          "name": "编辑",
+          "pathName": "pages/voteOption/index",
+          "query": "mode=single",
+          "scene": null
+        },
+        {
+          "name": "投票",
+          "pathName": "pages/voting/index",
+          "query": "voteid=1609655527486",
           "scene": null
         }
       ]

@@ -26,10 +26,13 @@
 }
 .vote-container .vote .vote-button {
   width: 250rpx;
+  min-height: 0;
   line-height: 65rpx;
   margin: 0 auto;
-  color: #FFF;
+  padding: 0;
+  border-radius: 0;
   background-color: var(--themeColor);
+  color: #FFF;
 }
 .vote-container .vote .vote-hand-container {
   position: absolute;

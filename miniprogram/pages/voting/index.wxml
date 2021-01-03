@@ -1,0 +1,41 @@
+<wxs module="isActive">
+    function check(optionid, myVoteList) {
+        return myVoteList.indexOf(optionid) != -1 ? 'active' : ''
+    }
+
+    module.exports.check = check;
+</wxs>
+
+<view class="vote-container" wx:if="{{!isLoading}}">
+    <view class="vote-header">
+        <view class="vote-title">
+            <text>{{voteData.title}}</text>
+        </view>
+        <view class="vote-description">
+            <text>{{voteData.description}}</text>
+            <text class="vote-mode">[{{modeText}}]</text>
+        </view>
+    </view>
+    <view class="vote-results">
+        <view
+            wx:for="{{voteData.optionList}}"
+            wx:key="id"
+            data-optionid="{{item.id}}"
+            class="vote-option {{isActive.check(item.id, myVoteList)}}"
+            bindtap="handleOptionTab"
+        >
+            <view class="option-content">
+                <view class="option-name">
+                    <text>{{item.option}}</text>
+                </view> 
+                <view class="vote-count">
+                    <text class="count">1票</text>
+                    <text class="percent">0%</text>
+                </view>
+            </view>
+            <view class="vote-user">
+                
+            </view>
+        </view>
+    </view>
+</view>

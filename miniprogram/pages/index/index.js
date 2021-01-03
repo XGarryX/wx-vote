@@ -1,7 +1,9 @@
-// miniprogram/pages/index/index.js
+import choiceMode from '../../untils/choiceMode'
+
 Page({
     data: {
-        disabled: false
+        disabled: false,
+        choiceMode: {}
     },
 
     animationList: [{
@@ -26,7 +28,13 @@ Page({
     handleAnimationEnd() {
         console.log('结束')
         this.setData({
-            disabled: false
+            disabled: false,
+        })
+    },
+
+    onLoad() {
+        this.setData({
+            choiceMode
         })
     }
 })

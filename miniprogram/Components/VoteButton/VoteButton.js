@@ -21,11 +21,20 @@ Component({
 
   data: {
     count: 3,
-    resetting: false  //是否处于初始化状态
+    resetting: false,  //是否处于初始化状态
+    openType: 'getUserInfo'
   },
 
   methods: {
-    handleTap() {
+    handleGetuserInfo(e) {
+      let userInfo = e.detail.userInfo
+      if(userInfo) {
+        wx.setStorageSync('userInfo', userInfo)
+        this.animationStart()
+      }
+    },
+
+    animationStart() {
       if(!this.data.disabled && !this.data.resetting) {
         let animationList = [{
           delay: 20,
@@ -82,10 +91,6 @@ Component({
       this.setAnimationData(animationList)
     },
 
-    animationStart() {
-      this.triggerEvent('animationStart')
-    },
-
     handleTransitionEnd: (function() {
       let _complate = 0
       return function () {
@@ -109,5 +114,13 @@ Component({
       }
     })()
   },
-
+  lifetimes: {
+    created() {
+      let userInfo = wx.getStorageSync('userInfo')
+      let openType = !userInfo ? 'getUserInfo' : ''
+      this.setData({
+        openType
+      })
+    }
+  }
 })

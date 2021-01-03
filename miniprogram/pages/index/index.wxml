@@ -4,7 +4,7 @@
     bindanimationEnd="handleAnimationEnd"
     animationList="{{animationList}}"
     disabled="{{disabled}}"
-    url="/pages/singleChoice/index"
+    url="/pages/voteOption/index?mode={{choiceMode.SINGLE}}"
 />
 <VoteButton
     title="多选投票"
@@ -12,4 +12,5 @@
     bindanimationEnd="handleAnimationEnd"
     animationList="{{animationList}}"
     disabled="{{disabled}}"
+    url="/pages/voteOption/index?mode={{choiceMode.MULTIPLE}}"
 />
