@@ -9,6 +9,7 @@
   color: var(--themeColor);
 }
 .vote-container .vote-results .vote-option .option-content {
+  position: relative;
   display: flex;
   line-height: 110rpx;
   justify-content: space-between;
@@ -18,7 +19,11 @@
   box-shadow: 0px 2px 2px #eaeaea;
 }
 .vote-container .vote-results .vote-option .option-content .option-name {
-  flex: 3;
+  display: flex;
+  align-items: center;
+}
+.vote-container .vote-results .vote-option .option-content .option-name text {
+  margin-right: 20rpx;
 }
 .vote-container .vote-results .vote-option .option-content .vote-count {
   display: flex;
@@ -32,4 +37,14 @@
 }
 .vote-container .vote-results .vote-option .option-content .vote-count .percent {
   width: 74rpx;
+}
+.vote-container .vote-results .vote-option .option-content .bottom-line {
+  position: absolute;
+  height: 4rpx;
+  bottom: 0;
+  background-color: var(--themeColor);
+  transition: width 0.2s;
+}
+.vote-container .vote-results .vote-option .vote-user {
+  margin-top: 10rpx;
 }

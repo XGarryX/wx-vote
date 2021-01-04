@@ -1,40 +1,63 @@
-<wxs module="isActive">
-    function check(optionid, myVoteList) {
-        return myVoteList.indexOf(optionid) != -1 ? 'active' : ''
+<wxs module="Handler">
+    function getPercent(voteLog, optionid) {
+        var total = voteLog.total || 0
+        var count = voteLog[optionid] ? voteLog[optionid].length : 0
+        return total ? Math.floor(count / total * 100 * 10) / 10 : 0
     }
 
-    module.exports.check = check;
+    function iconClass(myVoteList, optionid) {
+        var state = myVoteList[optionid] ? myVoteList[optionid].state : null
+        switch(state) {
+            case 'loading':
+                return 'icon-loading'
+            case 'active':
+                return 'icon-check'
+        }
+    }
+
+    module.exports.getPercent = getPercent
+    module.exports.iconClass = iconClass
 </wxs>
 
 <view class="vote-container" wx:if="{{!isLoading}}">
     <view class="vote-header">
         <view class="vote-title">
-            <text>{{voteData.title}}</text>
+            <text>{{title}}</text>
         </view>
         <view class="vote-description">
-            <text>{{voteData.description}}</text>
+            <text>{{description}}</text>
             <text class="vote-mode">[{{modeText}}]</text>
         </view>
     </view>
     <view class="vote-results">
         <view
-            wx:for="{{voteData.optionList}}"
+            wx:for="{{optionList}}"
             wx:key="id"
-            data-optionid="{{item.id}}"
-            class="vote-option {{isActive.check(item.id, myVoteList)}}"
-            bindtap="handleOptionTab"
+            class="vote-option"
         >
-            <view class="option-content">
+            <view
+                class="option-content"
+                data-optionid="{{item.id}}"
+                bindtap="handleOptionTab"
+            >
                 <view class="option-name">
                     <text>{{item.option}}</text>
-                </view> 
-                <view class="vote-count">
-                    <text class="count">1票</text>
-                    <text class="percent">0%</text>
+                    <i class="{{Handler.iconClass(myVoteList, item.id)}}"></i>
                 </view>
+                <view class="vote-count">
+                    <text class="count">{{voteLog[item.id].length || 0}}票</text>
+                    <text class="percent">{{Handler.getPercent(voteLog, item.id)}}%</text>
+                </view>
+                <view class="bottom-line" style="width: {{Handler.getPercent(voteLog, item.id)}}%"></view>
             </view>
-            <view class="vote-user">
-                
+            <view
+                wx:if="{{myVoteList[item.id] && myVoteList[item.id].state == 'active'}}"
+                class="vote-user"
+            >
+                <UserHead
+                    userInfo="{{userInfo}}"
+                    voteLog="{{voteLog[item.id]}}"
+                />
             </view>
         </view>
     </view>

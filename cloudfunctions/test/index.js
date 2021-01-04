@@ -8,28 +8,37 @@ cloud.init({
 // 云函数入口函数
 exports.main = async ({_id}) => {
   const db = cloud.database()
-  let { OPENID } = cloud.getWXContext()
+  const $ = db.command.aggregate
 
   return db.collection('voteList')
     .aggregate().match({
-    _id
+      _id: '1609655527486'
     })
     .lookup({
       from: 'voteLog',
       localField: '_id',
       foreignField: 'voteid',
+      pipeline: $.pipeline()
+        .project({
+          voteid: 0
+        })
+        .done(),
       as: 'voteLog'
     })
     .lookup({
       from: 'userInfo',
-      localField: 'voteLog._openid',
+      localField: '_openid',
       foreignField: '_id',
+      pipeline: $.pipeline()
+        .project({
+          _id: 0
+        })
+        .done(),
       as: 'userInfo'
     })
-    .end().then(res => {
-      return {
-        ...res,
-        _openid: OPENID
-      }
+    .project({
+      _id: 0,
+      voteid: 0
     })
+    .end()
 }

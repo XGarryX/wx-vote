@@ -3,8 +3,75 @@
 page {
   --themeColor: #5ed2de;
   background: #f3f3f3;
+  --timingFunction : topcheck 0.3s cubic-bezier(.65,.29,.25,1.29);
 }
 
 page, view, button {
   box-sizing: border-box;
+}
+
+.icon-check {
+  display: inline-block;
+  position: relative;
+}
+.icon-check:before, .icon-check:after {
+  content: '';
+  position:absolute;
+  width: 5rpx;
+  background-color: var(--themeColor);
+  transform-origin: left top;
+}
+.icon-check::before {
+  height: 36rpx;
+  left: 15rpx;
+  top: 13rpx;
+  transform: rotate(-135deg);
+  animation: var(--timingFunction);
+  -webkit-animation: var(--timingFunction);
+}
+.icon-check:after {
+  height: 16rpx;
+  transform: rotate(-45deg);
+  animation: bottomcheck 0.15s linear;
+  -webkit-animation: bottomcheck 0.15s linear;
+}
+
+@keyframes topcheck {
+  0% { height: 0 }
+  50% { height: 0 }
+  100% { height: 36rpx }
+}
+@-webkit-keyframes topcheck {
+  0% { height: 0 }
+  50% { height: 0 }
+  100% { height: 36rpx }
+}
+
+@keyframes bottomcheck {
+  0% { height: 0 }
+  50% { height: 16rpx }
+}
+@-webkit-keyframes bottomcheck {
+  0% { height: 0 }
+  50% { height: 16rpx }
+}
+
+.icon-loading {
+  width: 26rpx;
+  height: 26rpx;
+  margin-top: 4rpx;
+  border-radius: 50%;
+  border: 5rpx solid var(--themeColor);
+  border-bottom-color: transparent;
+  animation: loading 0.8s infinite;
+  -webkit-animation: loading 0.8s infinite;
+}
+
+@keyframes loading {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+@-webkit-keyframes loading {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
 }

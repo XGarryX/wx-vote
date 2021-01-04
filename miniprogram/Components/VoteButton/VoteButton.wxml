@@ -4,17 +4,17 @@
     >
         <image mode="widthFix" src="../../assets/images/single-choice.png" />
         <button
-            wx:if="{{openType == 'getUserInfo'}}"
-            class="vote-button getUserInfo"
-            open-type="getUserInfo"
-            bindgetuserinfo="handleGetuserInfo"
+            wx:if="{{hasLogin}}"
+            class="vote-button"
+            bindtap="animationStart"
         >
             {{title}}
         </button>
         <button
             wx:else
-            class="vote-button"
-            bindtap="animationStart"
+            class="vote-button getUserInfo"
+            open-type="getUserInfo"
+            bindgetuserinfo="handleGetuserInfo"
         >
             {{title}}
         </button>

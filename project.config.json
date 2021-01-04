@@ -19,8 +19,9 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -63,13 +64,13 @@
         {
           "name": "编辑",
           "pathName": "pages/voteOption/index",
-          "query": "mode=single",
+          "query": "mode=multiple",
           "scene": null
         },
         {
           "name": "投票",
           "pathName": "pages/voting/index",
-          "query": "voteid=1609655527486",
+          "query": "voteid=706d90a0-fa8a-4b9d-9bf0-abc5a2e2c45f",
           "scene": null
         }
       ]

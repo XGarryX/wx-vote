@@ -1,0 +1,74 @@
+@import '../../style/iconfont.wxss';
+
+.head-container {
+    padding: 0 10rpx 0 30rpx;
+    .user-list {
+        display: inline-block;
+        .user-info {
+            display: inline-block;
+            height: 48rpx;
+            line-height: 48rpx;
+            image {
+                width: 40rpx;
+                height: auto;
+                margin-right: 15rpx;
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+            .userName {
+                display: none;
+                font-size: 24rpx;
+                color: #909090;
+            }
+            &.my {
+                image {
+                    animation: jitter 0.5s;
+                }
+            }
+            &.hidden {
+                display: none;
+            }
+        }
+        &.active {
+            .userName {
+                display: inline-block;
+                margin-right: 15rpx;
+            }
+        }
+    }
+    .switch-bottom {
+        display: inline-block;
+        vertical-align: top;
+        width: 44rpx;
+        height: 44rpx;
+        margin-top: 6rpx;
+        line-height: 40rpx;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        text-align: center;
+        .iconfont {
+            vertical-align: top;
+            color: #969696;
+            font-weight: bold;
+            &.icon-fold{
+                margin-left: -2rpx;
+            }
+        }
+    }
+}
+
+@keyframes jitter {
+    40% {
+        scale: 1.15;
+    }
+    60% {
+        scale: 0.95;
+    }
+    80% {
+        scale: 1.1;
+    }
+    100% {
+        scale: 1;
+    }
+}

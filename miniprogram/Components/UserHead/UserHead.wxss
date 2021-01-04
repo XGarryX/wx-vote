@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2305100_hbgyek4jeih.eot?t=1609766131770');
+  /* IE9 */
+  src: url('//at.alicdn.com/t/font_2305100_hbgyek4jeih.eot?t=1609766131770#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAV4AAsAAAAAC+gAAAUqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCEAgqKBId4ATYCJAMkCxQABCAFhG0HZBsAChGVpB+Q/Tyw3aZ0OIdTiyGGaAxD+5dHhgNgm4E4zZMlu7IMgTpF9+tnxvyzs3G6ceCJIRkApB2jKaLdrD94IQWp8PvWhkuiTUiHRB5Nu/aVfyazg8XA/xwubXphNr/VBowkwbkWFbVxckABdWNMWiQL5F7CeiqySQYX7xC32/1AAAiUQy2QTl16DQIHA6kIamZNnzoe3GMGS8ATcJ0ScS4j5DnI4NKTUgrAs8bvk2/QgHBAgkxBD+o3pfMktMuwsorU9VyjqAu3OieA40UABVALAAPIC5Hup0CtdC1QiHsxwzgAfr6tFMjIGZFxMucyH5T2KqvoeZBhgU7wE/gR/CcPYJAgg0IBQRY4QBSQWmfYeRkOZJiigqGRYYQEjYAKQY0DIyg052CEAs0HoAEBSnvRIAsoq9gGDgBQtXOCAKoD5HGAvAXStjKSBBQSbzQhQwEPqmwHvUjXOZckJglNnDOmM8E0IUps289UXSxYEYvmDBmkblUikjs0WRIaHHdHRi+6l0quRC4b5jO2X17xxheD3vxy8NulQ9/KjI4JAXdvdH8OEdgYOaBpJHmgZB+gCf1uKrUepzTCkntXECOuh6xlgqa8XYiK/mQp0YRC+ouA0MhyTYqVZxySkN4p18BSkaUtg5+sSO7at85aFNu9f33uitaT2kz3Z/lgKj5Zm2eoiPIcA/pYXzIZSQgzGnPjg6V4vCRJaCQRjTm83V2GMjcm9GiCyCcE2C5VNvZcKZQTpgmkP6KzKGt7Ltn8WhNx8hVbvN2KXZfy2dqLlczdlwvkDVeqzjaZb07fRL1UjZc0YriTGRJSXN/5PmyFvyOBXuFZYc8Lq2W4cqNoSgs+qKK5UV0Cp6H7DnMc+V0kHecd9u5LqAqxYzDwhHHmtBkoDBindZwdMJXGQwDEmWIbDnXfkYsIVOU76JGd57DCi36rwO+/aqDAAgaW7/nDVavYulr8+jZrR719cXv9v7bft21ztS0pv4XyWynNThzqyaPNL19M2VDYs0XFbT2+7aGhtj/3l3Xrtg+use7OnSeODS58As1f7xyePDk8pLL9zILmze39imPfM83obT5v1rzZF3ZzG5snpJ5LWWmREmkr9XLXzWrK+kBsFh9YqWdUPZwKpYTYv9pV1MkWH4pDSsIW6VCaXac4/MmhT8KmraatD2eF6gam+I/grEBd8aGVVuvK6HekHWTPgWic7dvaUGwVDbduNYxb2l7SNU9nP1GFm9/Spk7dSpva46+GhRF2QbeiBVIBANBHyS3Ac4dR1yDQ/Zw97OztbrUaQP8g4P3wvO8v8zf48+ztcmOnh9/4cADAB6vGv0BWTRSc9A3Q4A9SNC3wPE32kMGizk2iIFfveKUQF6Coppl8QQIIAvDH8Ad9VK02lLkaILiQo5REbRGA4iohGbYWyDSNQMG1BaGmrhdrsi3QRGYDanhUAMLvCEhMV4DySyMZ9kOQ5fgOFP6aIAxpeU1NlaLBkaEElvSfIlPkvmyTgVl7Q/BOFbtlBvEFdlGMtnXq+XNX5OAqTnCfYCfik89FRhfhYUjTgkouYhjxQpFyv647JeqTPFNktYGOGCgCLDLBH5nOKOR8bbkYBH7+BgJvKYUTut65X4A50fqkvjrqZUBe1Xmmrl1pXugjsLOIJX1kyrG6kCFdmBNSni6QedF7xcAQnmkFkqW9umzQlKxqr3lttq5XAAR6ldrRajq7unvavdhXpLbzzvWPaCpr21mUv13bhYrRgo2kY5FC0EojJ7UaAAA=') format('woff2'), url('//at.alicdn.com/t/font_2305100_hbgyek4jeih.woff?t=1609766131770') format('woff'), url('//at.alicdn.com/t/font_2305100_hbgyek4jeih.ttf?t=1609766131770') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('//at.alicdn.com/t/font_2305100_hbgyek4jeih.svg?t=1609766131770#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-fold:before {
+  content: "\e6dc";
+}
+.icon-unfold:before {
+  content: "\e605";
+}
+.icon-add:before {
+  content: "\e620";
+}
+.icon-minus:before {
+  content: "\e604";
+}
+.icon-share:before {
+  content: "\e60a";
+}
+.icon-edit:before {
+  content: "\e6b9";
+}
+.icon-delete:before {
+  content: "\e74c";
+}
+.icon-list:before {
+  content: "\e823";
+}
+.head-container {
+  padding: 0 10rpx 0 30rpx;
+}
+.head-container .user-list {
+  display: inline-block;
+}
+.head-container .user-list .user-info {
+  display: inline-block;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.head-container .user-list .user-info image {
+  width: 40rpx;
+  height: auto;
+  margin-right: 15rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.head-container .user-list .user-info .userName {
+  display: none;
+  font-size: 24rpx;
+  color: #909090;
+}
+.head-container .user-list .user-info.my image {
+  animation: jitter 0.5s;
+}
+.head-container .user-list .user-info.hidden {
+  display: none;
+}
+.head-container .user-list.active .userName {
+  display: inline-block;
+  margin-right: 15rpx;
+}
+.head-container .switch-bottom {
+  display: inline-block;
+  vertical-align: top;
+  width: 44rpx;
+  height: 44rpx;
+  margin-top: 6rpx;
+  line-height: 40rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+.head-container .switch-bottom .iconfont {
+  vertical-align: top;
+  color: #969696;
+  font-weight: bold;
+}
+.head-container .switch-bottom .iconfont.icon-fold {
+  margin-left: -2rpx;
+}
+@keyframes jitter {
+  40% {
+    scale: 1.15;
+  }
+  60% {
+    scale: 0.95;
+  }
+  80% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}

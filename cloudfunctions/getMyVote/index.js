@@ -16,5 +16,10 @@ exports.main = async ({voteid}) => {
   }).where({
     voteid,
     _openid: OPENID
-  }).get()
+  }).get().then(res => {
+    return {
+      ...res,
+      _openid: OPENID
+    }
+  })
 }

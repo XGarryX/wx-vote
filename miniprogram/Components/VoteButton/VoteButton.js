@@ -1,3 +1,4 @@
+import callFunction from '../../untils/callFunction'
 // Components/AnimationHand/AnimationHand.js
 Component({
   properties: {
@@ -22,15 +23,23 @@ Component({
   data: {
     count: 3,
     resetting: false,  //是否处于初始化状态
-    openType: 'getUserInfo'
+    hasLogin: false
   },
 
   methods: {
     handleGetuserInfo(e) {
       let userInfo = e.detail.userInfo
       if(userInfo) {
+        console.log(1)
         wx.setStorageSync('userInfo', userInfo)
         this.animationStart()
+        callFunction('setUserInfo', {
+          nickName: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl
+        })
+        this.setData({
+          hasLogin: true
+        })
       }
     },
 
@@ -117,9 +126,9 @@ Component({
   lifetimes: {
     created() {
       let userInfo = wx.getStorageSync('userInfo')
-      let openType = !userInfo ? 'getUserInfo' : ''
+      let hasLogin = userInfo ? true : false
       this.setData({
-        openType
+        hasLogin
       })
     }
   }

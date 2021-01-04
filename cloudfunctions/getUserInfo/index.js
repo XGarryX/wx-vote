@@ -6,13 +6,11 @@ cloud.init({
 })
 
 // 云函数入口函数
-exports.main = async ({voteid}) => {
+exports.main = async ({openid}, context) => {
   const db = cloud.database()
+  const _ = db.command
 
-  return db.collection('voteLog').field({
-    _openid: true,
-    voteList: true
-  }).where({
-    voteid
+  return db.collection('userInfo').where({
+    _id: _.in(openid)
   }).get()
 }

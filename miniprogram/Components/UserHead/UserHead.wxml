@@ -1,0 +1,18 @@
+<view class="head-container">
+    <view class="user-list {{active ? 'active' : ''}}">
+        <view
+            wx:for="{{voteLog}}"
+            wx:key="*this"
+            class="user-info my {{!active && index > 11 ? 'hidden' : ''}}"
+        >
+            <image mode="widthFix" src="{{userInfo[item].avatarUrl}}"/>
+            <text class="userName">{{userInfo[item].nickName}}</text>
+        </view>
+        <view class="switch-bottom">
+            <i
+                class="iconfont {{active ? 'icon-fold' : 'icon-unfold'}}"
+                bindtap="handleTap"
+            ></i>
+        </view>
+    </view>
+</view>
