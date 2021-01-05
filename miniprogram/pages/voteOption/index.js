@@ -143,7 +143,8 @@ Page({
 
   init(mode) {
     //获取当前日期
-    let due = new Date().toLocaleDateString().replace(/\//g, "-")
+    let date = new Date()
+    let due = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     //初始两个选项
     let optionList = Array.from({length: 2}).map((_, index) => {
       return {

@@ -58,7 +58,7 @@
         {
           "name": "编辑",
           "pathName": "pages/voteOption/index",
-          "query": "id=706d90a0-fa8a-4b9d-9bf0-abc5a2e2c45f",
+          "query": "mode=single",
           "scene": null
         },
         {
