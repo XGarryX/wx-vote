@@ -20,7 +20,7 @@
     module.exports.iconClass = iconClass
 </wxs>
 
-<view class="vote-container" wx:if="{{!isLoading}}">
+<view class="vote-container" wx:if="{{title}}">
     <view class="vote-header">
         <view class="vote-title">
             <text>{{title}}</text>

@@ -73,22 +73,19 @@
   width: 44rpx;
   height: 44rpx;
   margin-top: 6rpx;
-  line-height: 40rpx;
+  line-height: 35rpx;
   border-radius: 50%;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   text-align: center;
 }
 .head-container .switch-bottom .iconfont {
-  vertical-align: top;
+  vertical-align: middle;
   color: #969696;
   font-weight: bold;
 }
 .head-container .switch-bottom .iconfont.icon-fold {
   margin-left: -2rpx;
-}
-.head-container .switch-bottom .iconfont.icon-unfold {
-  margin-left: -1rpx;
 }
 @keyframes jitter {
   40% {

@@ -7,7 +7,7 @@ const paddingList = []
 // pages/voting/index.js
 Page({
   data: {
-    _id: null, //投票纪录id
+    _id: null,      //投票纪录id
     mode: '',       //单选/多选
     title: '',      //标题
     description: '',//说明
@@ -15,7 +15,6 @@ Page({
     voteLog: {},    //所有票数
     myVoteList: {}, //我的票数
     userInfo: {},   //用户姓名/头像
-    isLoading: true,//是否加载数据中
     isOutDate: false//是否过截止日期
   },
 
@@ -222,10 +221,6 @@ Page({
     }
 
     wx.hideToast()
-
-    this.setData({
-      isLoading: false
-    })
   },
 
   onUnload() {
