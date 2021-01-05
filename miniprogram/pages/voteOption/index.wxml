@@ -1,63 +1,66 @@
-<view class="card vote-detail">
-    <input
-        placeholder="投票标题"
-        class="item vote-title"
-        data-attr="title"
-        value="{{title}}"
-        bindinput="handleChange"
-    />
-    <input
-        placeholder="投票说明(选填)"
-        class="item vote-description"
-        data-attr="description"
-        value="{{description}}"
-        bindinput="handleChange"
-    />
-    <view class="option-container">
-        <view class="option-list">
-            <view
-                class="option-item"
-                wx:for="{{optionList}}"
-                wx:key="id"
-            >
-                <view class="icon-box">
-                    <i
-                        class="iconfont icon-minus"
-                        bindtap="handleMinusTap"
+<view class="vote-container" wx:if="{{!loading}}">
+    <view class="card vote-detail">
+        <input
+            placeholder="投票标题"
+            class="item vote-title"
+            data-attr="title"
+            value="{{title}}"
+            bindinput="handleChange"
+        />
+        <input
+            placeholder="投票说明(选填)"
+            class="item vote-description"
+            data-attr="description"
+            value="{{description}}"
+            bindinput="handleChange"
+        />
+        <view class="option-container">
+            <view class="option-list">
+                <view
+                    class="option-item"
+                    wx:for="{{optionList}}"
+                    wx:key="id"
+                >
+                    <view class="icon-box">
+                        <i
+                            class="iconfont icon-minus"
+                            bindtap="handleMinusTap"
+                            data-index="{{index}}"
+                            wx:if="{{index >= 2}}"
+                        />
+                    </view>
+                    <input
+                        class="item"
+                        placeholder="选项{{index + 1}}"
+                        bindinput="handleOptionInput"
                         data-index="{{index}}"
-                        wx:if="{{index >= 2}}"
+                        value="{{item.option}}"
                     />
                 </view>
-                <input
-                    class="item"
-                    placeholder="选项{{index + 1}}"
-                    bindinput="handleOptionInput"
-                    data-index="{{index}}"
-                />
+            </view>
+            <view class="add-option" bindtap="handleAddOption">
+                <i class="iconfont icon-add"></i>
+                <text>添加选项</text>
             </view>
         </view>
-        <view class="add-option" bindtap="handleAddOption">
-            <i class="iconfont icon-add"></i>
-            <text>添加选项</text>
+    </view>
+
+    <view class="card vote-setup">
+        <view class="item setup-date">
+            <text>截止日期</text>
+            <picker mode="date" data-attr="due" bindchange="handleChange" value="{{due}}" >
+                <text class="date-text">{{due}}</text>
+            </picker>
         </view>
+        <view class="item">
+            <text>匿名投票</text>
+            <switch color="#5ed2de" checked="{{isAnonymous}}" data-attr="isAnonymous" bindchange="handleChange" />
+        </view>
+        <!-- <view class="item">
+            <text>限制传播</text>
+            <switch color="#5ed2de" checked="{{isLimit}}" bindchange="handleIsLimitChange" />
+        </view> -->
     </view>
-</view>
 
-<view class="card vote-setup">
-    <view class="item setup-date">
-        <text>截止日期</text>
-        <picker mode="date" data-attr="due" bindchange="handleChange" >
-            <text class="date-text">{{due}}</text>
-        </picker>
-    </view>
-    <view class="item">
-        <text>匿名投票</text>
-        <switch color="#5ed2de" value="{{isAnonymous}}" data-attr="isAnonymous" bindchange="handleChange" />
-    </view>
-    <view class="item">
-        <text>限制传播</text>
-        <switch color="#5ed2de" value="{{isLimit}}" bindchange="handleIsLimitChange" />
-    </view>
+    <view class="complate-button" bindtap="handleSubmit">完成</view>
 </view>
-
-<view class="complate-button" bindtap="handleSubmit">完成</view>

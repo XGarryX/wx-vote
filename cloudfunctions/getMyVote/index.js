@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 获取我创建的投票
 const cloud = require('wx-server-sdk')
 
 cloud.init({
@@ -6,20 +6,24 @@ cloud.init({
 })
 
 // 云函数入口函数
-exports.main = async ({voteid}) => {
+exports.main = async (event, context) => {
   const db = cloud.database()
-  let { OPENID } = cloud.getWXContext()
+  const $ = db.command.aggregate
+  const { OPENID } = cloud.getWXContext()
 
-  return db.collection('voteLog').field({
-    _id: true,
-    voteList: true
-  }).where({
-    voteid,
-    _openid: OPENID
-  }).get().then(res => {
-    return {
-      ...res,
+  return db.collection('voteList').aggregate()
+    .match({
       _openid: OPENID
-    }
-  })
+    }).lookup({
+      from: 'voteLog',
+      localField: '_id',
+      foreignField: 'voteid',
+      as: 'voteList'
+    })
+    .project({
+      _id: 1,
+      title: 1,
+      voteCount: $.size('$voteList')
+    })
+    .end()
 }

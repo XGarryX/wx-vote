@@ -2,15 +2,19 @@
     title="单选投票"
     bindanimationStart="handleanimationStart"
     bindanimationEnd="handleAnimationEnd"
+    bindloginComplate="handleLoginComplate"
     animationList="{{animationList}}"
     disabled="{{disabled}}"
+    hasLogin="{{hasLogin}}"
     url="/pages/voteOption/index?mode={{choiceMode.SINGLE}}"
 />
 <VoteButton
     title="多选投票"
     bindanimationStart="handleanimationStart"
     bindanimationEnd="handleAnimationEnd"
+    bindloginComplate="handleLoginComplate"
     animationList="{{animationList}}"
     disabled="{{disabled}}"
+    hasLogin="{{hasLogin}}"
     url="/pages/voteOption/index?mode={{choiceMode.MULTIPLE}}"
 />

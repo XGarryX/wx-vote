@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 新建投票
 const cloud = require('wx-server-sdk')
 
 cloud.init({
@@ -12,11 +12,8 @@ exports.main = (event, context) => {
   const { _id, title, description, optionList, due, isAnonymous, isLimit, mode } = event
   const { OPENID } = cloud.getWXContext()
 
-  return db.collection('voteList').add({
-    data: {
-      _id,
-      _openid: OPENID,
-      title, description, optionList, due, isAnonymous, isLimit, mode
-    }
+  return db.collection('voteList').doc(_id).set({
+    _openid: OPENID,
+    title, description, optionList, due, isAnonymous, isLimit, mode
   })
 }

@@ -56,20 +56,25 @@
     "miniprogram": {
       "list": [
         {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
-        },
-        {
           "name": "编辑",
           "pathName": "pages/voteOption/index",
-          "query": "mode=multiple",
+          "query": "id=706d90a0-fa8a-4b9d-9bf0-abc5a2e2c45f",
           "scene": null
         },
         {
           "name": "投票",
           "pathName": "pages/voting/index",
+          "query": "voteid=2947954e-b88c-416a-99a5-6fa20dc91561",
+          "scene": 1044,
+          "shareInfo": {
+            "groupName": "测试模拟群0",
+            "shareName": "FUYOEBmXKmoa8ywf93vPG3Sh6tdudjJcgrpkHCCwnq4@cr4dev",
+            "shareKey": "RYoTONLolkuKNQ-gy-6DOUew0e7a6sLlmwXmdYomRIpipK1sDp78ON0rHOycuYj55z8NqDwGHeMNudustzphJw~~"
+          }
+        },
+        {
+          "name": "user",
+          "pathName": "pages/user/index",
           "query": "voteid=706d90a0-fa8a-4b9d-9bf0-abc5a2e2c45f",
           "scene": null
         }

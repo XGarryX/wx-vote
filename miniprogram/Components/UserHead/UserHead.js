@@ -29,6 +29,9 @@ Component({
       this.setData({
         active: !this.data.active
       })
+    },
+    handleImgError(e) {
+
     }
   }
 })

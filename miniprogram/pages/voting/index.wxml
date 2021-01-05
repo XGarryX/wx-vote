@@ -9,6 +9,7 @@
         var state = myVoteList[optionid] ? myVoteList[optionid].state : null
         switch(state) {
             case 'loading':
+            case 'canceling':
                 return 'icon-loading'
             case 'active':
                 return 'icon-check'
@@ -51,7 +52,7 @@
                 <view class="bottom-line" style="width: {{Handler.getPercent(voteLog, item.id)}}%"></view>
             </view>
             <view
-                wx:if="{{myVoteList[item.id] && myVoteList[item.id].state == 'active'}}"
+                wx:if="{{myVoteList[item.id] && myVoteList[item.id].state != 'loading' && !isAnonymous}}"
                 class="vote-user"
             >
                 <UserHead
@@ -60,5 +61,9 @@
                 />
             </view>
         </view>
+    </view>
+    <view class="bottom-text">
+        <text wx:if="{{!isOutDate}}">截止日期: {{due}}</text>
+        <view wx:else class="outDate">投票已结束</view>
     </view>
 </view>

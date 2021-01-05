@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 用户更改投票
 const cloud = require('wx-server-sdk')
 
 cloud.init({

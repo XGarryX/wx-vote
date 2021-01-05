@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 记录错误信息
 const cloud = require('wx-server-sdk')
 
 cloud.init({

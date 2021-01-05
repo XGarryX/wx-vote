@@ -1,6 +1,7 @@
 @import 'style/iconfont.wxss';
 
 page {
+  height: 100%;
   --themeColor: #5ed2de;
   background: #f3f3f3;
   --timingFunction : topcheck 0.3s cubic-bezier(.65,.29,.25,1.29);

@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 获取用户头像等信息
 const cloud = require('wx-server-sdk')
 
 cloud.init({

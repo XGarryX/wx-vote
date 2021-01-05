@@ -3,9 +3,9 @@
         <view
             wx:for="{{voteLog}}"
             wx:key="*this"
-            class="user-info my {{!active && index > 11 ? 'hidden' : ''}}"
+            class="user-info {{!active && index > 11 ? 'hidden' : ''}}"
         >
-            <image mode="widthFix" src="{{userInfo[item].avatarUrl}}"/>
+            <image mode="widthFix" src="{{userInfo[item].avatarUrl || '/assets/images/user.png'}}" />
             <text class="userName">{{userInfo[item].nickName}}</text>
         </view>
         <view class="switch-bottom">

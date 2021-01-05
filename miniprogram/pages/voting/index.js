@@ -1,9 +1,9 @@
 import callFunction from '../../untils/callFunction'
 import choiceMode from '../../untils/choiceMode'
 import getGuid from '../../untils/getGuid'
+import handleError from '../../untils/handleError'
 
 const paddingList = []
-
 // pages/voting/index.js
 Page({
   data: {
@@ -15,18 +15,18 @@ Page({
     voteLog: {},    //所有票数
     myVoteList: {}, //我的票数
     userInfo: {},   //用户姓名/头像
-    isLoading: true
+    isLoading: true,//是否加载数据中
+    isOutDate: false//是否过截止日期
   },
 
   voteid: null,
-
+  //获取投票信息
   async getVoteData(voteid) {
     const res = await callFunction('getVote', {
       _id: voteid
     })
-    console.log(res)
     if(res !== false) {
-      let { title, description, optionList, mode, voteLog, userInfo } = res.list[0]
+      let { title, description, optionList, mode, voteLog, userInfo, isAnonymous, due } = res.list[0]
       let modeText = mode == choiceMode.SINGLE ? '单选' : '多选'
 
       this.setData({
@@ -35,11 +35,29 @@ Page({
         optionList,
         modeText,
         mode,
+        due,
+        isAnonymous,
         _openid: res._openid
       })
 
+      this.isOutDate(due)
       this.setVoteLog(voteLog)
       this.setUserInfo(userInfo)
+    }
+  },
+  //检查改投票是否过期
+  isOutDate(due) {
+    due = new Date(`${due} 24:00:00`).getTime()
+    let now = new Date().getTime()
+
+    if(now > due) {
+      wx.showModal({
+        title: '投票已结束',
+        showCancel: false
+      })
+      this.setData({
+        isOutDate: true
+      })
     }
   },
   //监听票数变化
@@ -51,14 +69,11 @@ Page({
       })
       .watch({
         onChange: res => {
-          console.log(res)
-          if(res.type != "init") {
-            this.setVoteLog(res.docs)
-            this.logUserInfo(res.docChanges)
-          }
+          this.setVoteLog(res.docs)
+          this.logUserInfo(res.docChanges)
         },
         onError(err) {
-          console.log(err)
+          handleError(err)
         }
       })
     this.setData({
@@ -128,15 +143,13 @@ Page({
       _id
     })
 
-    callFunction(fnName, param).then(res => {
-      console.log('更新投票')
-    })
+    callFunction(fnName, param)
   },
   //记录投票用户信息
   logUserInfo(changes) {
     let openid = []
     changes.forEach(log => {
-      const { dataType, doc: _openid } = log
+      const { dataType, doc: { _openid } } = log
       if(dataType == "add" && !this.data.userInfo[_openid] && !paddingList.includes(_openid)) {
         paddingList.push(_openid)
         openid.push(_openid)
@@ -161,12 +174,13 @@ Page({
     })
   },
   handleOptionTab(e) {
+    if(this.data.isOutDate) return
     let { optionid } = e.currentTarget.dataset
     let myVoteList = this.data.myVoteList
     let newVoteList = {...myVoteList}
 
     if(myVoteList[optionid]) {
-      myVoteList[optionid].state = 'loading'
+      myVoteList[optionid].state = 'canceling'
       delete newVoteList[optionid]
     } else {
       if(this.data.mode == choiceMode.SINGLE) {
@@ -192,10 +206,8 @@ Page({
     this.updateVoteLog(newVoteList)
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  async onLoad({voteid}) {
+  async onLoad(option) {
+    let voteid = option.voteid
     this.voteid = voteid
     wx.showToast({
       title: '加载中',
@@ -205,12 +217,28 @@ Page({
     //获取投票内容
     await this.getVoteData(voteid)
 
-    this.getVoteLogWatcher(voteid)
+    if(!this.data.isOutDate) {
+      this.getVoteLogWatcher(voteid)
+    }
 
     wx.hideToast()
 
     this.setData({
       isLoading: false
     })
+  },
+
+  onUnload() {
+    let watcher = this.data.watcher
+    watcher && watcher.close()
+  },
+
+  onShareAppMessage() {
+    let { nickName } = wx.getStorageSync('userInfo')
+    return {
+        title: `${nickName}给您发来一个投票`,
+        path: `/pages/voting/index?voteid=${this.voteid}`,
+        imageUrl: '/assets/images/single-choice.png'
+    }
   }
 })

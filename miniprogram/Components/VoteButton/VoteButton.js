@@ -2,6 +2,10 @@ import callFunction from '../../untils/callFunction'
 // Components/AnimationHand/AnimationHand.js
 Component({
   properties: {
+    hasLogin: {
+      type: Boolean,
+      value: false
+    },
     title: {
       type: String,
       value: ''
@@ -30,16 +34,8 @@ Component({
     handleGetuserInfo(e) {
       let userInfo = e.detail.userInfo
       if(userInfo) {
-        console.log(1)
-        wx.setStorageSync('userInfo', userInfo)
+        this.triggerEvent('loginComplate', userInfo)
         this.animationStart()
-        callFunction('setUserInfo', {
-          nickName: userInfo.nickName,
-          avatarUrl: userInfo.avatarUrl
-        })
-        this.setData({
-          hasLogin: true
-        })
       }
     },
 
@@ -122,14 +118,5 @@ Component({
         }
       }
     })()
-  },
-  lifetimes: {
-    created() {
-      let userInfo = wx.getStorageSync('userInfo')
-      let hasLogin = userInfo ? true : false
-      this.setData({
-        hasLogin
-      })
-    }
   }
 })

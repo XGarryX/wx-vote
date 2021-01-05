@@ -22,6 +22,7 @@
 }
 .vote-container .vote image {
   width: 35%;
+  height: 220rpx;
   margin: 0 auto;
 }
 .vote-container .vote .vote-button {

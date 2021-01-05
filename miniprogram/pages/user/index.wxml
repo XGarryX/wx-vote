@@ -1,2 +1,59 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<view class="user">
+    <view class="voting-container" wx:if="{{hasLogin}}">
+        <view class="voting-record">
+            <view
+                class="vote-list"
+                wx:for="{{voteList}}"
+                wx:key="_id"
+            >
+                <view
+                    class="vote-text"
+                    data-index="{{index}}"
+                    bindtap="handleVoteListTap"
+                >
+                    <text class="vote-title">{{item.title}}</text>
+                    <text class="vote-count">参与人数:{{item.voteCount}}</text>
+                </view>
+                <view class="vote-drawer" style="display:{{activeIndex == index ? 'flex' : 'none'}}">
+                    <view class="drawer-button" data-id="{{item._id}}" bindtap="handleEdit">
+                        <i class="iconfont icon-edit"></i>
+                        <view class="drawer-text">编辑</view>
+                    </view>
+                    <view class="drawer-button" data-id="{{item._id}}" bindtap="handleCheck">
+                        <i class="iconfont icon-list"></i>
+                        <view class="drawer-text">查看</view>
+                    </view>
+                    <view class="drawer-button">
+                        <button open-type="share" data-id="{{item._id}}">
+                            <i class="iconfont icon-share"></i>
+                            <view class="drawer-text">分享</view>
+                        </button>
+                    </view>
+                    <view class="drawer-button" data-id="{{item._id}}" data-index="{{index}}" bindtap="handleDelete">
+                        <i class="iconfont icon-delete"></i>
+                        <view class="drawer-text">删除</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="bottom-text">
+            <text wx:if="{{padding}}">加载中...</text>
+            <text wx:elif="{{!padding && voteList.length == 0}}">还没有投票哦~先创建一个吧</text>
+        </view>
+    </view>
+    <view class="login-container" wx:else>
+        <view class="login-content">
+            <view class="login-tips">
+                <view>欢迎使用我的小投票</view>
+                <view>请登录查看您的投票纪录</view>
+            </view>
+            <button
+                class="login-button"
+                open-type="getUserInfo"
+                bindgetuserinfo="handleGetuserInfo"
+            >
+                登录
+            </button>
+        </view>
+    </view>
+</view>

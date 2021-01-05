@@ -1,9 +1,11 @@
 import choiceMode from '../../untils/choiceMode'
+import callFunction from '../../untils/callFunction'
 
 Page({
     data: {
         disabled: false,
-        choiceMode: {}
+        choiceMode: {},
+        hasLogin: false
     },
 
     animationList: [{
@@ -19,22 +21,44 @@ Page({
     }],
 
     handleanimationStart() {
-        console.log('开始')
         this.setData({
             disabled: true
         })
     },
 
     handleAnimationEnd() {
-        console.log('结束')
         this.setData({
             disabled: false,
         })
     },
 
-    onLoad() {
-        this.setData({
-            choiceMode
+    handleLoginComplate(userInfo) {
+        wx.setStorageSync('userInfo', userInfo)
+
+        callFunction('setUserInfo', {
+            nickName: userInfo.nickName,
+            avatarUrl: userInfo.avatarUrl
         })
+
+        this.setData({
+            hasLogin: true
+        })
+    },
+
+    onLoad() {
+        let hasLogin = wx.getStorageSync('userInfo') ? true : false
+
+        this.setData({
+            choiceMode,
+            hasLogin
+        })
+    },
+
+    onShareAppMessage() {
+        return {
+            title: '小投票',
+            path: '/pages/index/index',
+            imageUrl: '/assets/images/single-choice.png'
+        }
     }
 })

@@ -9,10 +9,9 @@ Page({
     description: '',
     optionList: [],
     isAnonymous: false,
-    isLimit: false
+    //isLimit: false,
+    loading: true
   },
-
-  option: 'single',
 
   handleAddOption() {
     this.setData({
@@ -58,22 +57,22 @@ Page({
     })
   },
 
-  handleIsLimitChange(e) {
-    let isLimit =  e.detail.value
-    isLimit && wx.showModal({
-      title: '限制传播',
-      content: '开启后仅允许在一个群中进行投票',
-      showCancel: false,
-    })
+  // handleIsLimitChange(e) {
+  //   let isLimit =  e.detail.value
+  //   isLimit && wx.showModal({
+  //     title: '限制传播',
+  //     content: '开启后仅允许在一个群中进行投票',
+  //     showCancel: false,
+  //   })
 
-    this.setData({
-      isLimit
-    })
-  },
+  //   this.setData({
+  //     isLimit
+  //   })
+  // },
 
   handleSubmit() {
-    let _id = getGuid()
-    let { title, description, optionList, due, isAnonymous, isLimit } = this.data
+    let _id = this.data._id || getGuid()
+    let { title, description, optionList, due, isAnonymous, mode } = this.data
     //检查标题是否为空
     if(!(title = title.trim())) {
       wx.showModal({
@@ -104,21 +103,48 @@ Page({
       optionList,
       due,
       isAnonymous,
-      isLimit,
-      mode: this.mode
+      //isLimit,
+      mode
     }).then(res => {
       if(res !== false) {
         wx.hideToast()
         wx.redirectTo({
-          url: `/pages/voting/index?voteid=${res._id}`
+          url: `/pages/voting/index?voteid=${_id}`
         })
-        console.log(res)
       }
     })
   },
+  //获取投票设置
+  async getVoteData(id) {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      mask: true
+    })
+    let res = await callFunction('getVoteBaseInfo', {
+      _id: id
+    })
+    if(res != false) {
+      let { description, due, isAnonymous, mode, optionList, title } = res.data
+      this.setData({
+        _id: id,
+        description,
+        due,
+        isAnonymous,
+        //isLimit,
+        mode,
+        optionList,
+        title,
+        loading: false
+      })
+      wx.hideToast()
+    }
+  },
 
-  onLoad({mode}) {
+  init(mode) {
+    //获取当前日期
     let due = new Date().toLocaleDateString().replace(/\//g, "-")
+    //初始两个选项
     let optionList = Array.from({length: 2}).map((_, index) => {
       return {
         id: String(Date.now() + index),
@@ -128,15 +154,23 @@ Page({
     
     this.setData({
       optionList,
-      due
+      due,
+      mode,
+      loading: false
     })
 
     let title = mode == choiceMode.SINGLE ? '单选投票' : '多选投票'
-
     wx.setNavigationBarTitle({
       title
     })
+  },
 
-    this.mode = mode
+  onLoad({mode, id}) {
+    //有传id代表编辑
+    if(id) {
+      this.getVoteData(id)
+    } else {
+      this.init(mode)
+    }
   }
 })

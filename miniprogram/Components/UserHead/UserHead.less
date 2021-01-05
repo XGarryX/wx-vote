@@ -14,16 +14,12 @@
                 margin-right: 15rpx;
                 border-radius: 50%;
                 vertical-align: middle;
+                animation: jitter 0.5s;
             }
             .userName {
                 display: none;
                 font-size: 24rpx;
                 color: #909090;
-            }
-            &.my {
-                image {
-                    animation: jitter 0.5s;
-                }
             }
             &.hidden {
                 display: none;
@@ -53,6 +49,9 @@
             font-weight: bold;
             &.icon-fold{
                 margin-left: -2rpx;
+            }
+            &.icon-unfold {
+                margin-left: -1rpx;
             }
         }
     }
